@@ -10,8 +10,8 @@ const cors = require("cors");
 app.use(express.json());
 app.use(cors())
 
-app.get('/', (req,res)=>{
-  res.send("shubh");
+app.get('/frontend/login.html', (req,res)=>{
+  res.send("this is great");
 })
 
 try {
