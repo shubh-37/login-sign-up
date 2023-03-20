@@ -10,7 +10,7 @@ const cors = require("cors");
 app.use(express.json());
 app.use(cors())
 
-app.get('/frontend/login.html', (req,res)=>{
+app.get('/login.html', (req,res)=>{
   res.send("this is great");
 })
 
