@@ -11,19 +11,18 @@ const emailChecker = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+")
 function onSignUpHandler(){
     const emailVal = email.value;
     const passwordVal = password.value;
-    const data = {emailID: emailVal, password: passwordVal}
-    console.log(data)
+    const data = {emailId: emailVal, password: passwordVal}
     if(emailVal&&passwordVal){
         if(emailVal.match(emailChecker)&&passwordVal.match(passwordChecker)){
             outputDiv.innerText = "Youre logged in"
-            axios.post("http://localhost:3000", data)
+            axios.post("http://localhost:3000/register", data)
               .then(function (response) {
                 console.log(response);
               })
               .catch(function (error) {
                 console.log(error);
               });
-            // window.location.replace("http://127.0.0.1:5500/frontend/login.html")
+            window.location.replace("/login")
         }else{
             outputDiv.innerText = "Please enter correct email id and password!"
         }
