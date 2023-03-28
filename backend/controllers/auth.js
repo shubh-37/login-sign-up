@@ -21,7 +21,10 @@ function auth(app, Models) {
       });
       return res.status(201).json({ token: token, emailId: emailId });
     } catch (error) {
-      return res.status(500).json({ message: error.message });
+        if(error.message.match("E11000 duplicate key error collection:")){
+            return res.status(409).json({ message: "Duplicate User" });
+        }
+        return res.status(500).json({ message: error.message });
     }
   });
 
