@@ -1,6 +1,6 @@
 // const { default: axios } = require("axios");
 
-const email = document.querySelector('.emailSignUp');
+const email = document.querySelector('.email-sign-up');
 const password = document.querySelector('.password-sign-up');
 const submitBtn = document.querySelector(".submit");
 const outputDiv = document.querySelector(".output");
@@ -14,15 +14,17 @@ function onSignUpHandler(){
     const data = {emailId: emailVal, password: passwordVal}
     if(emailVal&&passwordVal){
         if(emailVal.match(emailChecker)&&passwordVal.match(passwordChecker)){
-            outputDiv.innerText = "Youre logged in"
             axios.post("http://localhost:3000/register", data)
               .then(function (response) {
                 console.log(response);
+                outputDiv.innerHTML = "Your acc is created!"
+                window.location.replace("/login.html")
               })
-              .catch(function (error) {
-                console.log(error);
+              .catch(function ({ response : { status }}) {
+                  if(status == 409){
+                    outputDiv.innerText = "This user already exists please try again with a new email ID";
+                  }
               });
-            window.location.replace("/login")
         }else{
             outputDiv.innerText = "Please enter correct email id and password!"
         }
